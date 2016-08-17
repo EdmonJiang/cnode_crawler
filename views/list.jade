@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  .container
+    h1= title
+    ul.sync-pagination.pagination-sm
+    .topic_list
+      table.table.table-striped.table-hover
+        each item in items
+          tr
+            td= item.type
+            td= item.count
+            td
+              a(href=item.link,target="_blank")= item.title
+            td= item.created
+            
+    ul.sync-pagination.pagination-sm
+
+  script.
+    $('.sync-pagination').twbsPagination({
+      totalPages: #{items.totalPages},
+      visiblePages: 7,
+      href:'?tab=all&page={{number}}',
+      initiateStartPageClick: false,
+      onPageClick: function (event, page) {
+        //$('#page-content').text('Page ' + page);
+      }
+    });
