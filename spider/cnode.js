@@ -7,7 +7,7 @@ var qs = require('querystring');
 
 var Cnode = function(url){this.cnodeUrl = url};
 
-Cnode.prototype.getData = function(res, next){
+Cnode.prototype.getData = function(res, tab, next){
     var cnodeUrl = this.cnodeUrl;
     superagent.get(cnodeUrl).end(function(err, html){
         if (err) return next(err);
@@ -47,7 +47,7 @@ Cnode.prototype.getData = function(res, next){
         })
         items.totalPages = totalPages;
         //res.send(items);
-        res.render('list', {title: '资源列表', items: items});
+        res.render('list', {title: '资源列表', tab: tab, items: items});
     })
 }
 

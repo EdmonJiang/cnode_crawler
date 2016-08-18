@@ -3,6 +3,17 @@ extends layout
 block content
   .container
     h1= title
+    div
+      - var curTab = tab
+      a.btn(href="/?tab=all" class={"btn-info": curTab==="all","btn-default": curTab!=="all"}) 全部
+      &nbsp;
+      a.btn(href="/?tab=good" class={"btn-info": curTab==="good","btn-default": curTab!=="good"}) 精华
+      &nbsp;
+      a.btn(href="/?tab=share" class={"btn-info": curTab==="share","btn-default": curTab!=="share"}) 分享
+      &nbsp;
+      a.btn(href="/?tab=ask" class={"btn-info": curTab==="ask","btn-default": curTab!=="ask"}) 问答
+      &nbsp;
+      a.btn(href="/?tab=job" class={"btn-info": curTab==="job","btn-default": curTab!=="job"}) 招聘
     ul.sync-pagination.pagination-sm
     .topic_list
       table.table.table-striped.table-hover
@@ -20,7 +31,7 @@ block content
     $('.sync-pagination').twbsPagination({
       totalPages: #{items.totalPages},
       visiblePages: 7,
-      href:'?tab=all&page={{number}}',
+      href:'?tab=#{tab}&page={{number}}',
       initiateStartPageClick: false,
       onPageClick: function (event, page) {
         //$('#page-content').text('Page ' + page);

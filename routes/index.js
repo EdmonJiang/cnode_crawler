@@ -10,11 +10,12 @@ router.get('/', function(req, res, next) {
   var cnodeUrl = 'https://cnodejs.org/';
   if(req.query){
     cnodeUrl = url.resolve(cnodeUrl, req.url);
+    var tab = req.query.tab;
     console.log(cnodeUrl);
   }
   
   var c = new cnode(cnodeUrl)
-  c.getData(res, next);
+  c.getData(res,tab,next);
   //console.log(c.cnodeUrl);
  
 });
